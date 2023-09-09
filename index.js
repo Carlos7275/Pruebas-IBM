@@ -1,11 +1,10 @@
-const express = require('express')
-const app=express()
-const port=3000
+const http = require('http');
 
-app.get("/",(req,res)=>{
-	res.send("Hola Mundo");
-})
+http.createServer(function (request, response) {
+   target = process.env.TARGET ? process.env.TARGET : 'World' ;
+   msg = process.env.MSG ? process.env.MSG : 'Hello ' + target + '\n';
+   response.writeHead(200, {'Content-Type': 'text/plain'});
+   response.end(msg);
+}).listen(8080);
 
-app.listen(port,()=>{
-	console.log(`App de Ejemplo escuchando a http://localhost:${port}`)
-})
+console.log('Server running at http://0.0.0.0:8080/');
