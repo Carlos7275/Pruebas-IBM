@@ -1,10 +1,18 @@
-const http = require('http');
+// require expressjs
+const express = require("express")
+const app = express()
+// define port 8080
+PORT = 8080
+app.use(express.json())
+// use router to bundle all routes to /
+const router = express.Router()
+app.use("/", router)
+// get on root route
+router.get("/", (req,res) => {
+	res.send("hello world!!!")
+})
 
-http.createServer(function (request, response) {
-   target = process.env.TARGET ? process.env.TARGET : 'World' ;
-   msg = process.env.MSG ? process.env.MSG : 'Hello ' + target + '\n';
-   response.writeHead(200, {'Content-Type': 'text/plain'});
-   response.end(msg);
-}).listen(8080);
-
-console.log('Server running at http://0.0.0.0:8080/');
+// start server
+app.listen(PORT, () => {
+	console.log("Server is up and running!!")
+})
