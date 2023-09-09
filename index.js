@@ -1,11 +1,18 @@
-const express = require('express')
-const app=express()
-const port=3000
-
-app.get("/",(req,res)=>{
-	res.send("Hola Mundo");
+// require expressjs
+const express = require("express")
+const app = express()
+// define port 8080
+PORT = 8080
+app.use(express.json())
+// use router to bundle all routes to /
+const router = express.Router()
+app.use("/", router)
+// get on root route
+router.get("/", (req,res) => {
+	res.send("hello world!!!")
 })
 
-app.listen(port,()=>{
-	console.log(`App de Ejemplo escuchando a http://localhost:${port}`)
+// start server
+app.listen(PORT, () => {
+	console.log("Server is up and running!!")
 })
